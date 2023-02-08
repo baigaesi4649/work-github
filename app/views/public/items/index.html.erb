@@ -1,2 +1,8 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<h1>商品一覧</h1>
+<% @items.each do |item| %>
+<div>
+  <%= image_tag item.get_image %>
+  <p>商品名：<%= item.name %></p>
+  <p>説明：<%= item.price %></p>
+</div>
+<% end %>

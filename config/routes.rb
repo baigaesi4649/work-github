@@ -17,10 +17,13 @@ Rails.application.routes.draw do
   }
   
   namespace :public do
-    resources :customers , only: [:show, :edit, :update] do
+    resources :customers, only: [] do
     collection do
-      get 'unsubscribe'
-      patch 'withdraw'
+     get "my_page"
+     get "information/edit"
+     patch "information"
+     get 'unsubscribe'
+     patch 'withdraw'
     end
    end
   end
