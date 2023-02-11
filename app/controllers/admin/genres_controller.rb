@@ -3,6 +3,7 @@ class Admin::GenresController < ApplicationController
   end
   
   def index
+   @genres=Genre.all
   end
 
   def edit
