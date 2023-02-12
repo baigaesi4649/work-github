@@ -1,11 +1,22 @@
 <h1>商品一覧</h1>
 <%= link_to "+",new_admin_item_path %>
+<table class="table">
+<tbody>
+<tr>
+ <th>商品ID</th>
+ <th>商品名</th>
+ <th>税抜価格</th>
+ <th>ジャンル</th>
+ <th>ステータス</th>
+</tr>
 <% @items.each do |item| %>
-<div>
-  <p><%= item.id %></p>
-  <p><%= item.name %></p>
-  <p><%= item.price %></p>
-  <p><%= item.genre_id %></p>
-  <p><%= item.is_active %></p>
-</div>
+<tr>
+  <td><%= item.id %></td>
+  <td><%= item.name %></td>
+  <td><%= item.price %></td>
+  <td><%= item.genre.name %></td>
+  <td><%= item.is_active %></td>
+</tr>
 <% end %>
+</tbody>
+</table>

@@ -1,5 +1,4 @@
-<p>ジャンル一覧・追加</p>
-  <h4>ジャンル名</h4>
+<p>商品新規登録</p>
 <%= form_with model: Item.new , url: admin_items_path do |f| %>
   <p>商品画像</p>
   <%= f.file_field :image, accept: "image/*" %>
