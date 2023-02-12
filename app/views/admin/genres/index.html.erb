@@ -1,5 +1,9 @@
 <p>ジャンル一覧・追加</p>
-
+  <h4>ジャンル名</h4>
+<%= form_with model: Genre.new , url: admin_genres_path do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit '新規登録' %>
+<% end %>
 <table class="table">
 <tbody>
 <tr>

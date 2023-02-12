@@ -1,2 +1,20 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<p>ジャンル一覧・追加</p>
+  <h4>ジャンル名</h4>
+<%= form_with model: Item.new , url: admin_items_path do |f| %>
+  <p>商品画像</p>
+  <%= f.file_field :image, accept: "image/*" %>
+  <p>商品名</p>
+  <%= f.text_field :name %>
+  <p>商品説明</p>
+  <%= f.text_field :introduction %>
+  <p>ジャンル</p>
+   <%= f.collection_select :genre_id, Genre.all, :id,:name,{ include_blank: '選択してください'}, { required: true } %>
+  <p>税抜価格</p>
+  <%= f.text_field :price %>
+  <p>販売ステータス</p>
+  <%= f.radio_button :is_active, :sale %>
+  <%= f.label :is_active, "販売中", {value: :sale, style: "display: inline-block;"} %>
+  <%= f.radio_button :is_active, :stop_selling %>
+  <%= f.label :is_active, "販売停止中", {value: :stop_selling, style: "display: inline-block;"} %>
+  <%= f.submit '新規登録' %>
+<% end %>
