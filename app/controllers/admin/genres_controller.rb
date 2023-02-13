@@ -3,9 +3,9 @@ class Admin::GenresController < ApplicationController
        @genre=Genre.new(genre_params)
     if @genre.save
       #flash[:notice] = "You have updated user successfully."
-      redirect_to admin_item_path(:id)
+      redirect_to edit_admin_genre_path(@genre.id)
     else
-      render :admin_items_path
+      render :admin_genres_path
     end
   end
   
