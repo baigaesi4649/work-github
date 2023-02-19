@@ -2,7 +2,9 @@
 <% @items.each do |item| %>
 <div>
   <%= image_tag item.get_image %>
-  <p><%= item.name %></p>
+  <%= link_to public_item_path(item.id) do %>
+　 <%= item.name %>
+　<% end %>
   <p><%= item.price %></p>
 </div>
 <% end %>
