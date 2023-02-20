@@ -3,17 +3,34 @@ class Public::OrdersController < ApplicationController
    @order=Order.new
   end
   
+  def confirm
+    @order = Order.new(order_params)
+    if params[:order][:select_address]==0
+      @order.shipping_postal_code = current_customer.postal_code
+      @order.shipping_address = current_customer.address
+      @order.shipping_name = current_customer.first_name + current_customer.last_name
+    elsif params[:order][:select_address]==1
+      @address = Address.find(params[:order][:address_id])
+      @order.shipping_postal_code = @address.postal_code
+      @order.shipping_address = @address.address
+      @order.shipping_name = @address.name
+    else
+      @order.shipping_postal_code = @order.shipping_postal_code
+      @order.shipping_address = @order.shipping_address
+      @order.shipping_name = @order.shipping_name      
+    end   
+  end
+  
   def create
-    @order = Order.new (order_params)
-    @order.customer_id = current_customer_id
-    if @order.save
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.save
      current_customer.cart_items.each do |cart|
      @order_detail = OrderDetail.new
      @order_detail.item_id=cart.item_id
      @order_detail.order_id=@order.id
      @order_detail.amount=cart.amount
      @order_detail.save
-     end
     end
   end
 
@@ -21,19 +38,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+   @order =Order.find(params[:id])
   end
   
   def complete
-  end
-  
-  def confirm
-    if params[:order][:select_address]==0
-      
-    elsif params[:order][:select_address]==1
-      
-    else params[:order][:select_address]==2
-   
-    end   
   end
   
   private
