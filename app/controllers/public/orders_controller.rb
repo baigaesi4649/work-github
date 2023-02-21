@@ -5,11 +5,12 @@ class Public::OrdersController < ApplicationController
   
   def confirm
     @order = Order.new(order_params)
-    if params[:order][:select_address]==0
+    @order.postage = 800
+    if params[:order][:select_address].to_i==0
       @order.shipping_postal_code = current_customer.postal_code
       @order.shipping_address = current_customer.address
       @order.shipping_name = current_customer.first_name + current_customer.last_name
-    elsif params[:order][:select_address]==1
+    elsif params[:order][:select_address].to_i==1
       @address = Address.find(params[:order][:address_id])
       @order.shipping_postal_code = @address.postal_code
       @order.shipping_address = @address.address
@@ -38,7 +39,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-   @order =Order.find(params[:id])
   end
   
   def complete

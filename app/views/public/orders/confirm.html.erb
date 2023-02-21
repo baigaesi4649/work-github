@@ -7,13 +7,34 @@
       <th>小計</th>
   </thead>
   <tbody>
+  <% sum = 0 %>
   <% @order.customer.cart_items.each do |cart_item| %>
       <tr>
           <td><%= cart_item.item.name %></td>
           <td><%= cart_item.item.with_tax_price %></td>
           <td><%= cart_item.amount %></td>
           <td><%= cart_item.subtotal %></td>
+          <% sum += cart_item.subtotal %>
       </tr>
   <% end %>
   </tbody>
 </table>
+<table>
+  <tbody>
+    <tr>
+      <th>送料</th>
+      <td><%= @order.postage %></td>
+    </tr>
+    <tr>
+      <th>商品合計</th>
+      <td><%= sum %></td>
+    </tr>
+    <tr>
+      <th>請求金額</th>
+      <td><%= @order.postage.to_i + sum.to_i %></td>
+    </tr>
+  </tbody>
+</table>
+支払方法<%= @order.payment_method_i18n %>
+お届け先<%= @order.shipping_address %>
+<%= link_to "注文を確定する",complete_public_orders_path,class: "btn btn-success btn-sm" %>
