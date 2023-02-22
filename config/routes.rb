@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  devise_for :customers,skip: [:passwords], controllers: {
+   registrations: "public/registrations",
+   sessions: 'public/sessions'
+  }
 
   # 顧客用
   # URL /customers/sign_in ...
@@ -11,21 +16,12 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
   end
   
-  devise_for :customers,skip: [:passwords], controllers: {
-   registrations: "public/registrations",
-   sessions: 'public/sessions'
-  }
-  
   namespace :public do
-    resources :customers, only: [] do
-    collection do
-     get "my_page" => "customers#show"
-     get "information/edit"
-     patch "information"
-     get 'unsubscribe'
-     patch 'withdraw'
-    end
-   end
+     get "customers/information/edit" => "customers#edit"
+     get "customers/my_page" => "customers#show"
+     patch "customers/information" => "customers#update"
+     get 'customers/unsubscribe' => "customers#unsubscribe"
+     patch 'customers/withdraw' => "customers#withdraw"
   end
   
   namespace :public do

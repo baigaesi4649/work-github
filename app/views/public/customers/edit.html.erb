@@ -1,5 +1,5 @@
 会員情報編集
-<%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
+<%= form_with model: @customer, url: public_customers_information_path, method: :patch do |f| %>
 <table class="table">
  <tbody>
   <td>氏名</td>
@@ -31,3 +31,4 @@
 </table>
   <%= f.submit '編集内容を保存' %>
 <% end %>
+<%= link_to "退会する", public_customers_unsubscribe_path,class: "btn btn btn-primary btn-sm" %>
