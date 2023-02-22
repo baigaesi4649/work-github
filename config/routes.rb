@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :customers, only: [] do
     collection do
-     get "my_page"
+     get "my_page" => "customers#show"
      get "information/edit"
      patch "information"
      get 'unsubscribe'

@@ -29,10 +29,13 @@ class Public::OrdersController < ApplicationController
      current_customer.cart_items.each do |cart|
      @order_detail = OrderDetail.new
      @order_detail.item_id=cart.item_id
+     @order_detail.purchase_price=cart.item.price
      @order_detail.order_id=@order.id
      @order_detail.amount=cart.amount
      @order_detail.save
-    end
+     end
+     current_customer.cart_items.destroy_all
+     redirect_to complete_public_orders_path
   end
 
   def index
