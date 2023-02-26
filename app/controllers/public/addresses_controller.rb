@@ -18,7 +18,7 @@ class Public::AddressesController < ApplicationController
   end
   
   def update
-    @address = Address.find(params[:id])
+    @address = current_customer
     if @address.update(address_params)
     #flash[:notice] = "You have updated user successfully."
     redirect_to public_addresses_path
