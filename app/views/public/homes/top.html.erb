@@ -10,11 +10,11 @@
 <div class="d-flex flex-row bd-highlight mb-3">
 <% @items.each do |item| %>
 <div>
-  <%= image_tag item.get_image %>
-  <p>
   <%= link_to public_item_path(item.id) do %>
+  <%= image_tag item.get_image %>
+  <% end %>
+  <p>
   <%= item.name %>
-  <% end %> 
   </p>
   <p>
   <%= item.price %>

@@ -36,13 +36,21 @@
     </tr>
   </tbody>
 </table>
-支払方法<%= @order.payment_method_i18n %>
-お届け先<%= @order.shipping_address %>
-<%= f.hidden_field :shipping_postal_code,:value =>  @order.shipping_postal_code %>
-<%= f.hidden_field :shipping_address,:value =>  @order.shipping_address %>
-<%= f.hidden_field :shipping_name,:value =>  @order.shipping_name %>
-<%= f.hidden_field :postage,:value =>  @order.postage %>
-<%= f.hidden_field :billing_amount,:value =>  sum %>
-<%= f.hidden_field :payment_method,:value =>  @order.payment_method %>
-<%= f.submit "注文を確定する" %>
-<% end %>
+<table>
+  <tbody>
+    <tr>
+      <th>支払方法</th>
+      <td><%= @order.payment_method_i18n %></td>
+    </tr>
+    <tr>
+      <th>お届け先</th>
+      <td><%= @order.shipping_address %></td>
+    </tr>
+      <%= f.hidden_field :shipping_postal_code,:value =>  @order.shipping_postal_code %>
+      <%= f.hidden_field :shipping_address,:value =>  @order.shipping_address %>
+      <%= f.hidden_field :shipping_name,:value =>  @order.shipping_name %>
+      <%= f.hidden_field :postage,:value =>  @order.postage %>
+      <%= f.hidden_field :billing_amount,:value =>  @order.postage+sum.to_i %>
+      <%= f.hidden_field :payment_method,:value =>  @order.payment_method %>
+      <%= f.submit "注文を確定する" ,class: "btn btn-success btn-sm"%>
+      <% end %>

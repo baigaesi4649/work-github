@@ -5,4 +5,4 @@
 退会する場合は、「退会する」をクリックしてください。
 </p>
 <%= link_to "退会しない", public_customers_my_page_path,class: "btn btn btn-primary btn-sm" %>
-<%= link_to "退会する", public_customers_withdraw_path,method: :patch,class: "btn btn btn-primary btn-sm" %>
+<%= link_to "退会する", public_customers_withdraw_path,method: :patch,data: {confirm: "削除しますか？"},class: "btn btn btn-primary btn-sm" %>

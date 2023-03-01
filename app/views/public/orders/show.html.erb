@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <th>支払方法</th>
-      <td><%= @order.payment_method %></td>
+      <td><%= @order.payment_method_i18n %></td>
     </tr>
   </tbody>
 </table>
@@ -46,11 +46,13 @@
       <th>小計</th>
   </thead>
   <tbody>
+    <% @order.order_details.each do |order_detail| %>
       <tr>
-          <td><%#= @order.order_details.item.name %></td>
-          <td><%#= @order.order_details.item.with_tax_price %></td>
-          <td><%#= @order.order_detail.amount %></td>
-          <td><%#= @order.customer.cart_items.subtotal %></td>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.item.with_tax_price %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.amount*order_detail.item.with_tax_price %></td>
       </tr>
+    <% end %>
   </tbody>
 </table>

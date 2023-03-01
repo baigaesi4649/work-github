@@ -16,7 +16,10 @@
           <%= order.shipping_address %></br>
           <%= order.shipping_name %>
           </td>
-          <td><%= order.order_details.item.name %></td>
+          <td>
+          <% order.order_details.each do |order_detail| %>
+          <%= order_detail.item.name %></td>
+          <% end %>
           <td><%= order.billing_amount %>円</td>
           <td><%= link_to "表示する",public_order_path(order.id),class: "btn btn btn-primary btn-sm" %></td>
       </tr>

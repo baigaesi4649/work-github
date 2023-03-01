@@ -35,13 +35,13 @@
   <tr>
   <td>販売ステータス</td>
   <td>
-  <%= f.radio_button :is_deleted, :valid %>
-  <%= f.label :is_deleted, "有効", {value: :valid, style: "display: inline-block;"} %>
-  <%= f.radio_button :is_active, :delete %>
-  <%= f.label :is_deleted, "退会", {value: :delete, style: "display: inline-block;"} %>
+  <%= f.radio_button :is_deleted, :false %>
+  <%= f.label :is_deleted, "有効" %>
+  <%= f.radio_button :is_active, :true %>
+  <%= f.label :is_deleted, "退会" %>
   </td>
   </tr>
  </tbody>
 </table>
-  <%= f.submit '変更を保存' %>
+  <%= f.submit '変更を保存',class: "btn btn btn-success btn-sm" %>
 <% end %>
