@@ -1,8 +1,8 @@
 <h1>注文情報入力</h1>
+<%= form_with model: @order, url:confirm_public_orders_path do |f| %>
 <div class="d-flex flex-column">
  <div>
 支払方法
-<%= form_with model: @order, url:confirm_public_orders_path do |f| %>
  <div>
   <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
   <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
